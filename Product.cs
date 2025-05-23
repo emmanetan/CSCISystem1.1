@@ -30,6 +30,7 @@ namespace CSCISystem1._1
             gridViewProductList.Columns.Add("Quantity", "Qty");
             gridViewProductList.Columns.Add("Price", "Unit Price");
             gridViewProductList.Columns.Add("TotalPrice", "Total Price");
+            //gsghafd
 
             con.Open();
             string query = "SELECT ProductCode, ProductName, ExpDate, Quantity, Price, TotalPrice FROM tb_product";
