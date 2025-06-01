@@ -211,6 +211,7 @@ namespace CSCISystem1._1
         private void updateBtn_Click(object sender, EventArgs e)
         {
             EditUserDatabase();
+            this.Close();
         }
 
         private void resetBtn_Click(object sender, EventArgs e)
@@ -235,6 +236,11 @@ namespace CSCISystem1._1
             }
 
 
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            labelEmail.Text = "";
         }
     }
 }

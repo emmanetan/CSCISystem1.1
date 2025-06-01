@@ -14,10 +14,13 @@ namespace LoginSignup
 {
     public partial class LoginForm: Form
     {
+
+
         int pw;
         bool hided;
         string firstname;
         string userType;
+        public bool IsAuthenticated { get; private set; }
 
         public LoginForm()
         {
@@ -84,7 +87,7 @@ namespace LoginSignup
                             }
                             else if (userType == "Cashier")
                             {
-                                POS pos = new POS();
+                                POS pos = new POS(firstname, profileImage); // Pass data here!
                                 pos.Show();
                             }
                             else

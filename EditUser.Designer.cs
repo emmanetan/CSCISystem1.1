@@ -39,13 +39,13 @@
             this.uploadBtn = new AntdUI.Button();
             this.resetBtn = new AntdUI.Button();
             this.panel1 = new AntdUI.Panel();
+            this.labelEmail = new Siticone.UI.WinForms.SiticoneLabel();
             this.selectUsertype = new AntdUI.Select();
             this.txtLname = new AntdUI.Input();
             this.txtFname = new AntdUI.Input();
             this.txtPassword = new AntdUI.Input();
             this.siticoneLabel5 = new Siticone.UI.WinForms.SiticoneLabel();
             this.siticoneLabel6 = new Siticone.UI.WinForms.SiticoneLabel();
-            this.labelEmail = new Siticone.UI.WinForms.SiticoneLabel();
             this.titlebar.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -99,6 +99,7 @@
             this.txtEmail.PlaceholderText = "Email";
             this.txtEmail.Size = new System.Drawing.Size(486, 55);
             this.txtEmail.TabIndex = 7;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // updateBtn
             // 
@@ -182,6 +183,15 @@
             this.panel1.TabIndex = 0;
             this.panel1.Text = "panel1";
             // 
+            // labelEmail
+            // 
+            this.labelEmail.BackColor = System.Drawing.Color.Transparent;
+            this.labelEmail.ForeColor = System.Drawing.Color.Red;
+            this.labelEmail.Location = new System.Drawing.Point(68, 209);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(3, 2);
+            this.labelEmail.TabIndex = 37;
+            // 
             // selectUsertype
             // 
             this.selectUsertype.Font = new System.Drawing.Font("Satoshi", 12F);
@@ -241,16 +251,6 @@
             this.siticoneLabel6.Size = new System.Drawing.Size(79, 22);
             this.siticoneLabel6.TabIndex = 29;
             this.siticoneLabel6.Text = "User Name";
-            // 
-            // labelEmail
-            // 
-            this.labelEmail.BackColor = System.Drawing.Color.Transparent;
-            this.labelEmail.ForeColor = System.Drawing.Color.Red;
-            this.labelEmail.Location = new System.Drawing.Point(68, 209);
-            this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(28, 15);
-            this.labelEmail.TabIndex = 37;
-            this.labelEmail.Text = "Email";
             // 
             // EditUser
             // 

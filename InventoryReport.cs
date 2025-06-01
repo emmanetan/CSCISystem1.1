@@ -4,6 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.IO;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace CSCISystem1._1
 {
@@ -13,9 +17,7 @@ namespace CSCISystem1._1
         private static DataTable removedItemsTable = new DataTable();
 
         private static string connectionString = "Data Source=EMMAN\\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
-        SqlConnection con = new SqlConnection(@"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
-
-        SqlCommand cmd;
+        
         static InventoryReport()
         {
             if (soldItemsTable.Columns.Count == 0)
@@ -42,26 +44,8 @@ namespace CSCISystem1._1
             InitializeComponent();
             gridViewSoldList.DataSource = soldItemsTable;
             gridViewRemovedList.DataSource = removedItemsTable;
-            LoadFilterSoldItem();
-            LoadFilterRemovedItem();
-
+           
         }
-
-        private void LoadFilterSoldItem()
-        {
-            filterSoldItem.Items.Add("All");
-            filterSoldItem.Items.Add("Today");
-            filterSoldItem.Items.Add("Last 7 Days");
-            filterSoldItem.Items.Add("Last 30 Days");
-            
-
-        }
-
-        private void LoadFilterRemovedItem()
-        {
-            filterRemovedItem.Items.Add("All");
-        }
-
         public static void AddSoldItem(string itemName, int quantity, double unitPrice)
         {
             soldItemsTable.Rows.Add(itemName, quantity, DateTime.Now, unitPrice);
@@ -79,6 +63,18 @@ namespace CSCISystem1._1
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        // NEW: Public static method to allow other classes (like SalesReport) to access soldItemsTable.
+        public static DataTable GetSoldItemsTable()
+        {
+            return soldItemsTable;
+        }
+
+        // NEW: Public static method to allow other classes to access removedItemsTable (for consistency).
+        public static DataTable GetRemovedItemsTable()
+        {
+            return removedItemsTable;
         }
 
         public static void AddRemovedItem(string itemCode, string itemName, int quantity, double unitPrice, DateTime expirationDate)
@@ -103,13 +99,11 @@ namespace CSCISystem1._1
                 }
             }
         }
-
         private void InventoryReport_Load(object sender, EventArgs e)
         {
             LoadSoldItemsFromDB();
             LoadRemovedItemsFromDB();
         }
-
         private void LoadSoldItemsFromDB()
         {
             soldItemsTable.Clear();
@@ -135,7 +129,6 @@ namespace CSCISystem1._1
                 }
             }
         }
-
         private void LoadRemovedItemsFromDB()
         {
             removedItemsTable.Clear();
@@ -175,90 +168,85 @@ namespace CSCISystem1._1
 
         private void SearchProducts(string searchText)
         {
-            try
+            if (string.IsNullOrEmpty(searchText))
             {
-                gridViewSoldList.Rows.Clear();
-                con.Open();
-
-                string query = "";
-                string column = "";
-
-                if (filterSoldItem.SelectedValue == null || filterSoldItem.SelectedValue.ToString() == "All")
-                {
-                    query = @"SELECT ProductCode, ProductName, ExpDate, Quantity, Price, TotalPrice
-                      FROM tb_product
-                      WHERE ProductCode LIKE @search OR ProductName LIKE @search";
-                }
-                else
-                {
-                    column = filterSoldItem.SelectedValue.ToString();
-                    query = $@"SELECT ProductCode, ProductName, ExpDate, Quantity, Price, TotalPrice
-                       FROM tb_product
-                       WHERE {column} LIKE @search";
-                }
-
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@search", "%" + searchText + "%");
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    gridViewSoldList.Rows.Add(
-                        reader["ProductCode"].ToString(),
-                        reader["ProductName"].ToString(),
-                        Convert.ToDateTime(reader["ExpDate"]).ToString("yyyy-MM-dd"),
-                        reader["Quantity"].ToString(),
-                        reader["Price"].ToString(),
-                        reader["TotalPrice"].ToString()
-                    );
-                }
+                gridViewSoldList.DataSource = soldItemsTable;
+                return;
             }
-            catch (Exception ex)
+            var filteredRows = soldItemsTable.AsEnumerable()
+                .Where(row => row.Field<string>("Item Name").IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);
+            if (filteredRows.Any())
             {
-                MessageBox.Show("Search error: " + ex.Message);
+                gridViewSoldList.DataSource = filteredRows.CopyToDataTable();
             }
-            finally
+            else
             {
-                con.Close();
+                gridViewSoldList.DataSource = null; // No results found
             }
+
         }
 
         private void SearchRemovedItem(string searchTxt)
         {
-            try
+            if (string.IsNullOrEmpty(searchTxt))
             {
-                gridViewRemovedList.Rows.Clear();
-                con.Open();
-                string query = @"SELECT ItemCode, ItemName, Quantity, UnitPrice, ExpirationDate, DateRemoved 
-                                 FROM tb_removedItems 
-                                 WHERE ItemCode LIKE @search OR ItemName LIKE @search";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@search", "%" + searchTxt + "%");
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    gridViewRemovedList.Rows.Add(
-                        reader["ItemCode"].ToString(),
-                        reader["ItemName"].ToString(),
-                        reader["Quantity"].ToString(),
-                        reader["UnitPrice"].ToString(),
-                        Convert.ToDateTime(reader["ExpirationDate"]).ToString("yyyy-MM-dd"),
-                        Convert.ToDateTime(reader["DateRemoved"]).ToString("yyyy-MM-dd")
-                    );
-                }
+                gridViewRemovedList.DataSource = removedItemsTable;
+                return;
             }
-            catch (Exception ex)
+            var filteredRows = removedItemsTable.AsEnumerable()
+                .Where(row => row.Field<string>("Item Name").IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0);
+
+
+            if (filteredRows.Any())
             {
-                MessageBox.Show("Search error: " + ex.Message);
+                gridViewRemovedList.DataSource = filteredRows.CopyToDataTable();
             }
-            finally
+            else
             {
-                con.Close();
+                gridViewRemovedList.DataSource = null; // No results found
             }
 
         }
 
+        private void ExportToCSV(DataGridView dgv, string fileName)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog()
+                   {
+                       Filter = "CSV file (*.csv)|*.csv",
+                       FileName = fileName
+                   })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamWriter sw = new StreamWriter(sfd.FileName))
+                    {
+                        // Write headers
+                        var headers = dgv.Columns.Cast<DataGridViewColumn>();
+                        sw.WriteLine(string.Join(",", headers.Select(c => "\"" + c.HeaderText + "\"")));
 
+                        // Write data
+                        foreach (DataGridViewRow row in dgv.Rows)
+                        {
+                            if (!row.IsNewRow)
+                            {
+                                var cells = row.Cells.Cast<DataGridViewCell>();
+                                sw.WriteLine(string.Join(",", cells.Select(c => "\"" + c.Value?.ToString() + "\"")));
+                            }
+                        }
+                    }
+                    MessageBox.Show("CSV exported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
 
+        private void DownloadBtn_Click(object sender, EventArgs e)
+        {
+            ExportToCSV(gridViewSoldList, "SoldItemsReport.csv");
+        }
+
+        private void DownloadRemovedItemBtn_Click(object sender, EventArgs e)
+        {
+            ExportToCSV(gridViewRemovedList, "RemovedItemsReport.csv");
+        }
     }
 }

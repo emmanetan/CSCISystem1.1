@@ -255,6 +255,7 @@
             0,
             0,
             0});
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             this.txtPrice.Leave += new System.EventHandler(this.txtPrice_Leave);
             // 
             // addBtn
@@ -309,7 +310,6 @@
             this.txtProductCode.PlaceholderText = "\"0001700D\"";
             this.txtProductCode.Size = new System.Drawing.Size(671, 55);
             this.txtProductCode.TabIndex = 6;
-            this.txtProductCode.TextChanged += new System.EventHandler(this.txtProductCode_TextChanged);
             this.txtProductCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProductCode_KeyPress);
             // 
             // titlebar

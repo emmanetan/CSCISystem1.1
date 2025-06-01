@@ -4,16 +4,22 @@ using System.Drawing;
 using System.IO;
 using Microsoft.Data.SqlClient;
 using CSCISystem1._1;
+using static System.Net.WebRequestMethods;
+using LoginSignup;
 
 namespace AntdUIDemo
 {
     public partial class POS : AntdUI.Window
     {
-        private bool isRemovingItem = false;
-        private bool eventHandlersAttached = false;
+        private string _cashierName;
+        private Image _profileImage;
+        public bool IsAuthenticated { get; private set; }
+
         // This is your global connection string
 
-        SqlConnection con = new SqlConnection(@"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
+        SqlConnection con =
+            new SqlConnection(
+                @"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
         public POS()
         {
@@ -21,10 +27,19 @@ namespace AntdUIDemo
             LoadMoP();
         }
 
+        public POS(string cashierName, Image profileImage)
+        {
+            InitializeComponent();
+            _cashierName = cashierName;
+            _profileImage = profileImage;
+            LoadMoP();
+        }
+
         private void LoadMoP()
         {
             mopDropdown.Items.Add("Cash");
             mopDropdown.SelectedIndex = 0;
+            txtBarcode.Focus();
         }
 
         private void LoadCartHeader()
@@ -38,37 +53,129 @@ namespace AntdUIDemo
 
         private void POS_Load(object sender, EventArgs e)
         {
-            if (!eventHandlersAttached)
-            {
-                txtCash.TextChanged += txtCash_TextChanged;
-                //button2.Click += RemoveVoidBtn;
-                button1.Click += button1_Click;
+            labelUser.Text = _cashierName;
 
-                eventHandlersAttached = true;
+            if (_profileImage != null)
+            {
+                circlePictureBoxUser.Image = _profileImage;
+                circlePictureBoxUser.SizeMode = PictureBoxSizeMode.StretchImage; // optional
             }
 
-            txtSearchItem.Focus();
             LoadReceipt();
             LoadProductDataHeader();
             LoadProductDatabase();
             LoadCartHeader();
 
+
+            txtBarcode.KeyDown += txtBarcode_KeyDown;
         }
 
+        private void SearchProducts(string searchText)
+        {
+            try
+            {
+                gridDataProductList.Rows.Clear();
+                con.Open();
 
-       
+                string query = @"SELECT ProductCode, ProductName, Quantity, Price, Image
+                         FROM tb_product
+                         WHERE ProductCode LIKE @search OR ProductName LIKE @search";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@search", "%" + searchText + "%");
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    object imageObj = reader["Image"];
+                    Image img = null;
+
+                    if (imageObj != DBNull.Value)
+                    {
+                        byte[] imageBytes = (byte[])imageObj;
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            img = Image.FromStream(ms);
+                        }
+                    }
+
+                    gridDataProductList.Rows.Add(
+                        reader["ProductCode"].ToString(),
+                        reader["ProductName"].ToString(),
+                        reader["Quantity"].ToString(),
+                        reader["Price"].ToString(),
+                        img
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
 
         private void LoadReceipt()
         {
             receiptTextBox.Clear();
-            receiptTextBox.Text += "Address: Legazpi City \n";
-            receiptTextBox.Text += "Tel: 999-685-0001\n";
+            receiptTextBox.Text += "                    STOREFLOW\n";
+            receiptTextBox.Text += "           Brgy. 2, Legazpi City 4500\n";
+            receiptTextBox.Text += "                 Tel: 999-685-0001\n";
             receiptTextBox.Text += "-----------------------------------------\n";
-            receiptTextBox.Text += "Date: " + DateTime.Now + "\n";
-            receiptTextBox.Text += "-----------------------------------------\n\n";
-            receiptTextBox.Text += "Item\t\t" + "Qty.\t\t" + "Price\t\n";
+            receiptTextBox.Text += $"Cashier: {_cashierName}\n";
+            receiptTextBox.Text += $"Date: {DateTime.Now:MMMM dd, yyyy hh:mm tt}\n";
             receiptTextBox.Text += "-----------------------------------------\n";
+            receiptTextBox.Text += "Item                 Qty  Price   Subtotal\n";
+            receiptTextBox.Text += "-----------------------------------------\n";
+
+            decimal subtotal = 0;
+
+            foreach (DataGridViewRow row in siticoneDataGridView2.Rows)
+            {
+                if (row.Cells["ItemName"].Value != null)
+                {
+                    string name = row.Cells["ItemName"].Value.ToString();
+                    int qty = Convert.ToInt32(row.Cells["Qty"].Value);
+                    decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value) / qty;
+                    decimal itemTotal = unitPrice * qty;
+
+                    subtotal += itemTotal;
+
+                    receiptTextBox.Text +=
+                        $"{name.PadRight(16).Substring(0, 16)} {qty,3}  ₱{unitPrice,6:0.00}  ₱{itemTotal,6:0.00}\n";
+                }
+            }
+
+            decimal tax = subtotal * 0.12m;
+            decimal total = subtotal + tax;
+
+            receiptTextBox.Text += "-----------------------------------------\n";
+            receiptTextBox.Text += $"Subtotal:" + $"₱{subtotal,7:0.00}\n";
+            receiptTextBox.Text += $"VAT (12%):" + $"₱{tax,7:0.00}\n";
+            receiptTextBox.Text += $"Total:" + $"₱{total,7:0.00}\n";
+
+            // 🟢 Add cash and change here
+            if (decimal.TryParse(txtCash.Text, out decimal cash))
+            {
+                decimal change = cash - total;
+                receiptTextBox.Text += $"Cash:" + $"₱{cash,7:0.00}\n";
+                receiptTextBox.Text += $"Change:" + $"₱{(change >= 0 ? change : 0),7:0.00}\n";
+            }
+            else
+            {
+                receiptTextBox.Text += $"Cash:" + $"₱0.00\n";
+                receiptTextBox.Text += $"Change:" + $"₱0.00\n";
+            }
+
+            receiptTextBox.Text += "-----------------------------------------\n";
+            receiptTextBox.Text += "       Thank you for shopping!\n";
+            receiptTextBox.Text += "    This serves as your receipt.\n";
         }
+
 
         private void LoadProductDataHeader()
         {
@@ -87,27 +194,14 @@ namespace AntdUIDemo
         }
         // added by zeus pogi
 
-        private void txtCash_TextChanged(object sender, EventArgs e)
-        {
-            if (decimal.TryParse(txtCash.Text, out decimal cash))
-            {
-                decimal total = decimal.Parse(input6.Text.Replace("₱", ""));
-                decimal change = cash - total;
-                input3.Text = "₱" + (change >= 0 ? change.ToString("0.00") : "0.00");
-            }
-            else
-            {
-                input3.Text = "₱0.00";
-            }
-        }
-
         private void UpdateTotals()
         {
             decimal subtotal = 0;
 
             foreach (DataGridViewRow row in siticoneDataGridView2.Rows)
             {
-                if (row.Cells["Price"].Value != null && decimal.TryParse(row.Cells["Price"].Value.ToString(), out decimal price))
+                if (row.Cells["Price"].Value != null &&
+                    decimal.TryParse(row.Cells["Price"].Value.ToString(), out decimal price))
                 {
                     subtotal += price;
                 }
@@ -117,8 +211,8 @@ namespace AntdUIDemo
             decimal total = subtotal + tax;
 
             input4.Text = "₱" + subtotal.ToString("0.00"); // Subtotal
-            input5.Text = "₱" + tax.ToString("0.00");     // Tax
-            input6.Text = "₱" + total.ToString("0.00");   // Total
+            input5.Text = "₱" + tax.ToString("0.00"); // Tax
+            input6.Text = "₱" + total.ToString("0.00"); // Total
         }
 
         private void gridDataProductList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -129,6 +223,7 @@ namespace AntdUIDemo
                 decimal price = Convert.ToDecimal(gridDataProductList.Rows[e.RowIndex].Cells["Price"].Value);
 
                 // Get available stock from grid
+                
                 // You must ensure Quantity is added as a column in gridDataProductList
                 int availableQty = 0;
                 if (gridDataProductList.Columns.Contains("Quantity"))
@@ -139,6 +234,7 @@ namespace AntdUIDemo
                 {
                     MessageBox.Show("Quantity column not found in grid.");
                     return;
+                    LoadProductDatabase();
                 }
 
                 bool found = false;
@@ -170,7 +266,10 @@ namespace AntdUIDemo
 
                     siticoneDataGridView2.Rows.Add(name, 1, price);
                 }
+
                 UpdateTotals();
+                LoadReceipt();
+                
             }
         }
 
@@ -178,12 +277,15 @@ namespace AntdUIDemo
         {
             // --- CHANGE THIS LINE ---
             // Use your local computer name: LAPTOP-JCLJ6T4H
-            using (SqlConnection localCon = new SqlConnection(@"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"))
+            using (SqlConnection localCon =
+                   new SqlConnection(
+                       @"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"))
             {
                 try
                 {
                     localCon.Open();
-                    string query = "SELECT ProductCode, ProductName, ExpDate, Quantity, Price, TotalPrice, Image FROM tb_product";
+                    string query =
+                        "SELECT ProductCode, ProductName, ExpDate, Quantity, Price, TotalPrice, Image FROM tb_product";
 
                     using (SqlCommand cmd = new SqlCommand(query, localCon))
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -220,9 +322,116 @@ namespace AntdUIDemo
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void RemoveVoidBtn(object sender, EventArgs e)
         {
-            // Step 1: Check payment method
+            AdminLogin loginForm = new AdminLogin();
+            DialogResult result = loginForm.ShowDialog();
+
+            if (result == DialogResult.OK && loginForm.IsAuthenticated)
+            {
+                foreach (DataGridViewRow row in siticoneDataGridView2.SelectedRows)
+                {
+                    siticoneDataGridView2.Rows.Remove(row);
+                }
+
+                MessageBox.Show("Item removed by admin.");
+                UpdateTotals();
+                LoadReceipt();
+            }
+            else
+            {
+                MessageBox.Show("Action canceled or unauthorized.", "Not Authorized", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+        }
+
+        private void txtSearchItem_TextChanged(object sender, EventArgs e)
+        {
+            SearchProducts(txtSearchItem.Text.Trim());
+        }
+
+        private void txtBarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string barcode = txtBarcode.Text.Trim();
+                if (!string.IsNullOrEmpty(barcode))
+                {
+                    AddItemToCartFromBarcode(barcode);
+                    txtBarcode.Clear(); // ready for next scan
+                }
+            }
+        }
+
+        private void AddItemToCartFromBarcode(string barcode)
+        {
+            try
+            {
+                con.Open();
+                string query = "SELECT ProductName, Quantity, Price FROM tb_product WHERE ProductCode = @code";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@code", barcode);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        string name = reader["ProductName"].ToString();
+                        int stock = Convert.ToInt32(reader["Quantity"]);
+                        decimal price = Convert.ToDecimal(reader["Price"]);
+
+                        // Check if already in cart
+                        bool found = false;
+                        foreach (DataGridViewRow row in siticoneDataGridView2.Rows)
+                        {
+                            if (row.Cells["ItemName"].Value?.ToString() == name)
+                            {
+                                int qtyInCart = Convert.ToInt32(row.Cells["Qty"].Value);
+                                if (qtyInCart + 1 > stock)
+                                {
+                                    MessageBox.Show("Cannot add more. Stock limit reached.");
+                                    return;
+                                }
+
+                                row.Cells["Qty"].Value = qtyInCart + 1;
+                                row.Cells["Price"].Value = (qtyInCart + 1) * price;
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found)
+                        {
+                            if (stock < 1)
+                            {
+                                MessageBox.Show("Out of stock.");
+                                return;
+                            }
+
+                            siticoneDataGridView2.Rows.Add(name, 1, price);
+                        }
+
+                        UpdateTotals();
+                        LoadReceipt();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Product not found.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error scanning barcode: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        private void payBtn_Click(object sender, EventArgs e)
+        {
             if (mopDropdown.SelectedValue == null) // safer than .SelectedValue
             {
                 MessageBox.Show("Please select a payment method.");
@@ -275,7 +484,8 @@ namespace AntdUIDemo
                 {
                     string productName = row.Cells["ItemName"].Value.ToString();
                     int qtyPurchased = Convert.ToInt32(row.Cells["Qty"].Value);
-                    double unitPrice = Convert.ToDouble(row.Cells["Price"].Value) / qtyPurchased; // Calculate unit price
+                    double unitPrice =
+                        Convert.ToDouble(row.Cells["Price"].Value) / qtyPurchased; // Calculate unit price
 
                     string updateQuery = @"
                         UPDATE tb_product
@@ -286,7 +496,7 @@ namespace AntdUIDemo
                     {
                         cmd.Parameters.AddWithValue("@Qty", qtyPurchased);
                         cmd.Parameters.AddWithValue("@Name", productName);
-                        
+
 
 
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -314,30 +524,41 @@ namespace AntdUIDemo
             txtCash.Text = "";
             input3.Text = "₱0.00";
             UpdateTotals();
+            LoadReceipt();
             LoadProductDatabase(); // Reload product list with updated stock
+
+
+
         }
 
-        private void RemoveVoidBtn(object sender, EventArgs e)
+        private void txtCash_TextChanged_1(object sender, EventArgs e)
         {
-            AdminLogin loginForm = new AdminLogin();
-            DialogResult result = loginForm.ShowDialog();
-
-            if (result == DialogResult.OK && loginForm.IsAuthenticated)
+            if (decimal.TryParse(txtCash.Text, out decimal cash))
             {
-                foreach (DataGridViewRow row in siticoneDataGridView2.SelectedRows)
-                {
-                    siticoneDataGridView2.Rows.Remove(row);
-                }
-
-                MessageBox.Show("Item removed by admin.");
-                UpdateTotals();
+                decimal total = decimal.Parse(input6.Text.Replace("₱", ""));
+                decimal change = cash - total;
+                input3.Text = "₱" + (change >= 0 ? change.ToString("0.00") : "0.00");
             }
             else
             {
-                MessageBox.Show("Action canceled or unauthorized.", "Not Authorized", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                input3.Text = "₱0.00";
             }
+            LoadReceipt();
         }
 
+        private void siticoneRoundedButton7_Click(object sender, EventArgs e)
+        {
+
+            //Logout
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+            }
+        }
     }
 }
     

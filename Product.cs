@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Management; // Not directly used in snippets, but kept
+using System.Management; 
 using System.Windows.Forms;
+using AntdUI;
+using AntdUIDemo;
+using LoginSignup;
 using Microsoft.Data.SqlClient;
-using Vanara.PInvoke; // Not directly used in snippets, but kept
 
 namespace CSCISystem1._1
 {
+
     public partial class Product : Form
     {
+        string firstname;
+        string userType;
+        Image profileImage;
         SqlConnection con = new SqlConnection(@"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
         SqlCommand cmd;
@@ -31,9 +37,6 @@ namespace CSCISystem1._1
             gridViewProductList.Columns.Clear();
             gridViewProductList.Rows.Clear();
 
-            // IMPORTANT: The first string is the INTERNAL NAME (Name property) of the column.
-            // The second string is the DISPLAY TEXT (HeaderText) of the column.
-            // Your row.Cells["ColumnName"] access uses the INTERNAL NAME.
             gridViewProductList.Columns.Add("ProductCode", "Item Code");
             gridViewProductList.Columns.Add("ProductName", "Item Name");
             gridViewProductList.Columns.Add("ExpDate", "Expiration Date"); // Corrected for consistency below
@@ -138,7 +141,6 @@ namespace CSCISystem1._1
             filter.Items.Add("Item Name");
             filter.Items.Add("ExpDate");
         }
-
         private void AddProductBtn_Click(object sender, EventArgs e)
         {
             AddProductForm addProductForm = new AddProductForm();
@@ -157,7 +159,7 @@ namespace CSCISystem1._1
                 // Get the clicked row
                 var row = gridViewProductList.Rows[e.RowIndex];
 
-                // Get product data from the DataGridView cells.
+                
                 // THESE NAMES MUST MATCH THE FIRST STRING (NAME) OF THE COLUMNS ADDED IN InitializeDataGridView().
                 // Also, ensure they match the InventoryReport.AddRemovedItem parameter order.
                 string itemCode = row.Cells["ProductCode"].Value.ToString(); // Changed: "ItemCode" to "ProductCode"
@@ -186,14 +188,6 @@ namespace CSCISystem1._1
 
                 // reload after editing
                 InitializeDataGridView();
-            }
-        }
-
-        private void breadcrumb1_ItemClick(object sender, AntdUI.BreadcrumbItemEventArgs e)
-        {
-            if (e.Item.Text == "Home")
-            {
-                this.Close();
             }
         }
 
@@ -251,5 +245,7 @@ namespace CSCISystem1._1
                 con.Close();
             }
         }
+
+        
     }
 }

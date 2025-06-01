@@ -42,7 +42,7 @@
             this.siticoneShadowPanel1 = new Siticone.UI.WinForms.SiticoneShadowPanel();
             this.circlePictureBoxUser = new Siticone.UI.WinForms.SiticoneCirclePictureBox();
             this.siticoneRoundedButton7 = new Siticone.UI.WinForms.SiticoneRoundedButton();
-            this.siticoneLabel8 = new Siticone.UI.WinForms.SiticoneLabel();
+            this.labelUser = new Siticone.UI.WinForms.SiticoneLabel();
             this.panel6 = new AntdUI.Panel();
             this.receiptTextBox = new System.Windows.Forms.RichTextBox();
             this.siticoneLabel7 = new Siticone.UI.WinForms.SiticoneLabel();
@@ -55,8 +55,8 @@
             this.siticoneLabel4 = new Siticone.UI.WinForms.SiticoneLabel();
             this.siticoneLabel5 = new Siticone.UI.WinForms.SiticoneLabel();
             this.panel4 = new AntdUI.Panel();
-            this.button2 = new AntdUI.Button();
-            this.button1 = new AntdUI.Button();
+            this.removeBtn = new AntdUI.Button();
+            this.payBtn = new AntdUI.Button();
             this.panel3 = new AntdUI.Panel();
             this.input6 = new AntdUI.Input();
             this.input5 = new AntdUI.Input();
@@ -66,7 +66,7 @@
             this.siticoneLabel1 = new Siticone.UI.WinForms.SiticoneLabel();
             this.panel1 = new AntdUI.Panel();
             this.siticoneDataGridView2 = new Siticone.UI.WinForms.SiticoneDataGridView();
-            this.input1 = new AntdUI.Input();
+            this.txtBarcode = new AntdUI.Input();
             this.productPanel = new AntdUI.Panel();
             this.gridDataProductList = new Siticone.UI.WinForms.SiticoneDataGridView();
             this.txtSearchItem = new AntdUI.Input();
@@ -150,7 +150,7 @@
             this.siticoneShadowPanel1.BackColor = System.Drawing.Color.Transparent;
             this.siticoneShadowPanel1.Controls.Add(this.circlePictureBoxUser);
             this.siticoneShadowPanel1.Controls.Add(this.siticoneRoundedButton7);
-            this.siticoneShadowPanel1.Controls.Add(this.siticoneLabel8);
+            this.siticoneShadowPanel1.Controls.Add(this.labelUser);
             this.siticoneShadowPanel1.FillColor = System.Drawing.Color.White;
             this.siticoneShadowPanel1.Location = new System.Drawing.Point(1614, 15);
             this.siticoneShadowPanel1.Name = "siticoneShadowPanel1";
@@ -164,12 +164,12 @@
             // 
             this.circlePictureBoxUser.BackColor = System.Drawing.Color.Transparent;
             this.circlePictureBoxUser.Image = ((System.Drawing.Image)(resources.GetObject("circlePictureBoxUser.Image")));
-            this.circlePictureBoxUser.Location = new System.Drawing.Point(43, 18);
+            this.circlePictureBoxUser.Location = new System.Drawing.Point(33, 12);
             this.circlePictureBoxUser.Name = "circlePictureBoxUser";
             this.circlePictureBoxUser.ShadowDecoration.Color = System.Drawing.Color.DimGray;
             this.circlePictureBoxUser.ShadowDecoration.Mode = Siticone.UI.WinForms.Enums.ShadowMode.Circle;
             this.circlePictureBoxUser.ShadowDecoration.Parent = this.circlePictureBoxUser;
-            this.circlePictureBoxUser.Size = new System.Drawing.Size(30, 29);
+            this.circlePictureBoxUser.Size = new System.Drawing.Size(40, 40);
             this.circlePictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.circlePictureBoxUser.TabIndex = 1;
             this.circlePictureBoxUser.TabStop = false;
@@ -195,17 +195,18 @@
             this.siticoneRoundedButton7.TabIndex = 6;
             this.siticoneRoundedButton7.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.siticoneRoundedButton7.TextOffset = new System.Drawing.Point(15, 0);
+            this.siticoneRoundedButton7.Click += new System.EventHandler(this.siticoneRoundedButton7_Click);
             // 
-            // siticoneLabel8
+            // labelUser
             // 
-            this.siticoneLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.siticoneLabel8.Font = new System.Drawing.Font("Satoshi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siticoneLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.siticoneLabel8.Location = new System.Drawing.Point(91, 21);
-            this.siticoneLabel8.Name = "siticoneLabel8";
-            this.siticoneLabel8.Size = new System.Drawing.Size(51, 22);
-            this.siticoneLabel8.TabIndex = 0;
-            this.siticoneLabel8.Text = "Admin";
+            this.labelUser.BackColor = System.Drawing.Color.Transparent;
+            this.labelUser.Font = new System.Drawing.Font("Satoshi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelUser.Location = new System.Drawing.Point(91, 21);
+            this.labelUser.Name = "labelUser";
+            this.labelUser.Size = new System.Drawing.Size(51, 22);
+            this.labelUser.TabIndex = 0;
+            this.labelUser.Text = "Admin";
             // 
             // panel6
             // 
@@ -238,11 +239,11 @@
             // 
             this.siticoneLabel7.BackColor = System.Drawing.Color.Transparent;
             this.siticoneLabel7.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.siticoneLabel7.Location = new System.Drawing.Point(104, 24);
+            this.siticoneLabel7.Location = new System.Drawing.Point(102, 24);
             this.siticoneLabel7.Name = "siticoneLabel7";
-            this.siticoneLabel7.Size = new System.Drawing.Size(82, 30);
+            this.siticoneLabel7.Size = new System.Drawing.Size(103, 30);
             this.siticoneLabel7.TabIndex = 10;
-            this.siticoneLabel7.Text = "Receipt";
+            this.siticoneLabel7.Text = "E-Receipt";
             // 
             // panel5
             // 
@@ -290,6 +291,7 @@
             this.txtCash.TabIndex = 0;
             this.txtCash.Text = "0.00";
             this.txtCash.ThousandsSeparator = true;
+            this.txtCash.TextChanged += new System.EventHandler(this.txtCash_TextChanged_1);
             // 
             // input3
             // 
@@ -354,8 +356,8 @@
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.removeBtn);
+            this.panel4.Controls.Add(this.payBtn);
             this.panel4.Location = new System.Drawing.Point(1612, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(289, 224);
@@ -363,28 +365,29 @@
             this.panel4.TabStop = false;
             this.panel4.Text = "panel4";
             // 
-            // button2
+            // removeBtn
             // 
-            this.button2.DefaultBack = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
-            this.button2.Font = new System.Drawing.Font("Microsoft Tai Le", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.button2.Location = new System.Drawing.Point(24, 117);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(244, 75);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Remove Item";
-            this.button2.Click += new System.EventHandler(this.RemoveVoidBtn);
+            this.removeBtn.DefaultBack = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
+            this.removeBtn.Font = new System.Drawing.Font("Microsoft Tai Le", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.removeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.removeBtn.Location = new System.Drawing.Point(24, 117);
+            this.removeBtn.Name = "removeBtn";
+            this.removeBtn.Size = new System.Drawing.Size(244, 75);
+            this.removeBtn.TabIndex = 1;
+            this.removeBtn.Text = "Remove Item";
+            this.removeBtn.Click += new System.EventHandler(this.RemoveVoidBtn);
             // 
-            // button1
+            // payBtn
             // 
-            this.button1.DefaultBack = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(243)))));
-            this.button1.Font = new System.Drawing.Font("Microsoft Tai Le", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.button1.Location = new System.Drawing.Point(24, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(244, 75);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Pay";
+            this.payBtn.DefaultBack = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(118)))), ((int)(((byte)(243)))));
+            this.payBtn.Font = new System.Drawing.Font("Microsoft Tai Le", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.payBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.payBtn.Location = new System.Drawing.Point(24, 37);
+            this.payBtn.Name = "payBtn";
+            this.payBtn.Size = new System.Drawing.Size(244, 75);
+            this.payBtn.TabIndex = 3;
+            this.payBtn.Text = "Pay";
+            this.payBtn.Click += new System.EventHandler(this.payBtn_Click);
             // 
             // panel3
             // 
@@ -492,7 +495,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.siticoneDataGridView2);
-            this.panel1.Controls.Add(this.input1);
+            this.panel1.Controls.Add(this.txtBarcode);
             this.panel1.Location = new System.Drawing.Point(974, 20);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(632, 793);
@@ -510,7 +513,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.siticoneDataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.siticoneDataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.siticoneDataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.siticoneDataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.siticoneDataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.siticoneDataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -528,7 +531,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Satoshi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.siticoneDataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
@@ -540,7 +543,7 @@
             this.siticoneDataGridView2.ReadOnly = true;
             this.siticoneDataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.siticoneDataGridView2.RowHeadersVisible = false;
-            this.siticoneDataGridView2.RowTemplate.Height = 40;
+            this.siticoneDataGridView2.RowTemplate.Height = 30;
             this.siticoneDataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.siticoneDataGridView2.Size = new System.Drawing.Size(604, 661);
             this.siticoneDataGridView2.TabIndex = 6;
@@ -550,7 +553,7 @@
             this.siticoneDataGridView2.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
             this.siticoneDataGridView2.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.siticoneDataGridView2.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.siticoneDataGridView2.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.siticoneDataGridView2.ThemeStyle.BackColor = System.Drawing.Color.White;
             this.siticoneDataGridView2.ThemeStyle.GridColor = System.Drawing.Color.White;
             this.siticoneDataGridView2.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
             this.siticoneDataGridView2.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -563,21 +566,22 @@
             this.siticoneDataGridView2.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.siticoneDataGridView2.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Satoshi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siticoneDataGridView2.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.siticoneDataGridView2.ThemeStyle.RowsStyle.Height = 40;
-            this.siticoneDataGridView2.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.siticoneDataGridView2.ThemeStyle.RowsStyle.Height = 30;
+            this.siticoneDataGridView2.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.RoyalBlue;
             this.siticoneDataGridView2.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.White;
             // 
-            // input1
+            // txtBarcode
             // 
-            this.input1.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.input1.JoinLeft = true;
-            this.input1.JoinRight = true;
-            this.input1.Location = new System.Drawing.Point(13, 694);
-            this.input1.Name = "input1";
-            this.input1.PlaceholderText = "";
-            this.input1.Size = new System.Drawing.Size(605, 68);
-            this.input1.TabIndex = 5;
-            this.input1.WaveSize = 0;
+            this.txtBarcode.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtBarcode.JoinLeft = true;
+            this.txtBarcode.JoinRight = true;
+            this.txtBarcode.Location = new System.Drawing.Point(13, 694);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.PlaceholderText = "";
+            this.txtBarcode.Size = new System.Drawing.Size(605, 68);
+            this.txtBarcode.TabIndex = 5;
+            this.txtBarcode.WaveSize = 0;
+            this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyDown);
             // 
             // productPanel
             // 
@@ -673,6 +677,7 @@
             this.txtSearchItem.Size = new System.Drawing.Size(851, 47);
             this.txtSearchItem.TabIndex = 0;
             this.txtSearchItem.WaveSize = 0;
+            this.txtSearchItem.TextChanged += new System.EventHandler(this.txtSearchItem_TextChanged);
             // 
             // button3
             // 
@@ -735,10 +740,10 @@
         private Siticone.UI.WinForms.SiticoneLabel siticoneLabel2;
         private Siticone.UI.WinForms.SiticoneLabel siticoneLabel1;
         private AntdUI.Panel productPanel;
-        private AntdUI.Button button1;
+        private AntdUI.Button payBtn;
         private Siticone.UI.WinForms.SiticoneLabel siticoneLabel4;
         private Siticone.UI.WinForms.SiticoneLabel siticoneLabel5;
-        private AntdUI.Button button2;
+        private AntdUI.Button removeBtn;
         private AntdUI.Panel panel1;
         private Siticone.UI.WinForms.SiticoneLabel siticoneLabel6;
         private Siticone.UI.WinForms.SiticoneControlBox siticoneControlBox2;
@@ -754,12 +759,12 @@
         private AntdUI.Panel panel6;
         private Siticone.UI.WinForms.SiticoneLabel siticoneLabel7;
         private System.Windows.Forms.RichTextBox receiptTextBox;
-        private AntdUI.Input input1;
+        private AntdUI.Input txtBarcode;
         private Siticone.UI.WinForms.SiticoneDataGridView siticoneDataGridView2;
         private Siticone.UI.WinForms.SiticoneDataGridView gridDataProductList;
         private Siticone.UI.WinForms.SiticoneShadowPanel siticoneShadowPanel1;
         private Siticone.UI.WinForms.SiticoneCirclePictureBox circlePictureBoxUser;
         private Siticone.UI.WinForms.SiticoneRoundedButton siticoneRoundedButton7;
-        private Siticone.UI.WinForms.SiticoneLabel siticoneLabel8;
+        private Siticone.UI.WinForms.SiticoneLabel labelUser;
     }
 }

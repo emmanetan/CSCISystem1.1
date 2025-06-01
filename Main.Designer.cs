@@ -33,7 +33,6 @@ namespace CSCISystem1._1
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel1 = new AntdUI.Panel();
-            this.TempPOSBTN = new System.Windows.Forms.Button();
             this.siticoneShadowPanel1 = new Siticone.UI.WinForms.SiticoneShadowPanel();
             this.UserCirclePictureBox = new Siticone.UI.WinForms.SiticoneCirclePictureBox();
             this.LogoutBtn = new Siticone.UI.WinForms.SiticoneRoundedButton();
@@ -65,7 +64,6 @@ namespace CSCISystem1._1
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.TempPOSBTN);
             this.panel1.Controls.Add(this.siticoneShadowPanel1);
             this.panel1.Controls.Add(this.panelDropDown);
             this.panel1.Controls.Add(this.siticonePictureBox1);
@@ -76,16 +74,6 @@ namespace CSCISystem1._1
             this.panel1.Size = new System.Drawing.Size(316, 667);
             this.panel1.TabIndex = 0;
             this.panel1.Text = "panel1";
-            // 
-            // TempPOSBTN
-            // 
-            this.TempPOSBTN.Location = new System.Drawing.Point(42, 478);
-            this.TempPOSBTN.Name = "TempPOSBTN";
-            this.TempPOSBTN.Size = new System.Drawing.Size(227, 66);
-            this.TempPOSBTN.TabIndex = 8;
-            this.TempPOSBTN.Text = "POS";
-            this.TempPOSBTN.UseVisualStyleBackColor = true;
-            this.TempPOSBTN.Click += new System.EventHandler(this.TempPOSBTN_Click);
             // 
             // siticoneShadowPanel1
             // 
@@ -138,6 +126,7 @@ namespace CSCISystem1._1
             this.LogoutBtn.TabIndex = 6;
             this.LogoutBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.LogoutBtn.TextOffset = new System.Drawing.Point(15, 0);
+            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
             // 
             // labelUserType
             // 
@@ -159,7 +148,7 @@ namespace CSCISystem1._1
             this.panelDropDown.Controls.Add(this.ReportBtn);
             this.panelDropDown.Controls.Add(this.InventoryRBtn);
             this.panelDropDown.Controls.Add(this.SalesBtn);
-            this.panelDropDown.Location = new System.Drawing.Point(23, 166);
+            this.panelDropDown.Location = new System.Drawing.Point(23, 227);
             this.panelDropDown.Name = "panelDropDown";
             this.panelDropDown.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panelDropDown.Size = new System.Drawing.Size(267, 185);
@@ -320,10 +309,10 @@ namespace CSCISystem1._1
             this.siticonePictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.siticonePictureBox1.BorderRadius = 2;
             this.siticonePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("siticonePictureBox1.Image")));
-            this.siticonePictureBox1.Location = new System.Drawing.Point(106, 37);
+            this.siticonePictureBox1.Location = new System.Drawing.Point(68, 41);
             this.siticonePictureBox1.Name = "siticonePictureBox1";
             this.siticonePictureBox1.ShadowDecoration.Parent = this.siticonePictureBox1;
-            this.siticonePictureBox1.Size = new System.Drawing.Size(106, 103);
+            this.siticonePictureBox1.Size = new System.Drawing.Size(180, 180);
             this.siticonePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.siticonePictureBox1.TabIndex = 3;
             this.siticonePictureBox1.TabStop = false;
@@ -372,7 +361,7 @@ namespace CSCISystem1._1
             // siticoneControlBox2
             // 
             this.siticoneControlBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticoneControlBox2.ControlBoxType = Siticone.UI.WinForms.Enums.ControlBoxType.MaximizeBox;
+            this.siticoneControlBox2.ControlBoxType = Siticone.UI.WinForms.Enums.ControlBoxType.MinimizeBox;
             this.siticoneControlBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
             this.siticoneControlBox2.HoveredState.Parent = this.siticoneControlBox2;
             this.siticoneControlBox2.IconColor = System.Drawing.Color.Black;
@@ -455,7 +444,6 @@ namespace CSCISystem1._1
         private System.Windows.Forms.Timer loadingTimer;
         private System.Windows.Forms.Timer dropDownTimer;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Button TempPOSBTN;
         private AntdUI.PageHeader titlebar;
         private Siticone.UI.WinForms.SiticoneControlBox siticoneControlBox2;
         private Siticone.UI.WinForms.SiticoneControlBox siticoneControlBox1;

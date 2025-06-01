@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.panelLogin = new System.Windows.Forms.Panel();
-            this.LoginLabel = new System.Windows.Forms.Label();
+            this.siticonePictureBox1 = new Siticone.UI.WinForms.SiticonePictureBox();
             this.ShowPassword = new Siticone.UI.WinForms.SiticoneCheckBox();
             this.PasswordTextBox = new Siticone.UI.WinForms.SiticoneRoundedTextBox();
             this.UsernameTextBox = new Siticone.UI.WinForms.SiticoneRoundedTextBox();
             this.LoginButton = new Siticone.UI.WinForms.SiticoneRoundedButton();
             this.Panel = new Siticone.UI.WinForms.SiticonePanel();
-            this.ExitButton = new Siticone.UI.WinForms.SiticoneButton();
+            this.siticoneControlBox1 = new Siticone.UI.WinForms.SiticoneControlBox();
             this.SignUpLabel = new System.Windows.Forms.Label();
             this.SignUpButton = new Siticone.UI.WinForms.SiticoneRoundedButton();
             this.NewEmailTextBox = new Siticone.UI.WinForms.SiticoneRoundedTextBox();
@@ -50,6 +50,7 @@
             this.siticoneLabel2 = new Siticone.UI.WinForms.SiticoneLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).BeginInit();
             this.Panel.SuspendLayout();
             this.panelSignUp.SuspendLayout();
             this.SuspendLayout();
@@ -60,27 +61,26 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelLogin.BackColor = System.Drawing.Color.Transparent;
-            this.panelLogin.Controls.Add(this.LoginLabel);
+            this.panelLogin.Controls.Add(this.siticonePictureBox1);
             this.panelLogin.Controls.Add(this.ShowPassword);
             this.panelLogin.Controls.Add(this.PasswordTextBox);
             this.panelLogin.Controls.Add(this.UsernameTextBox);
             this.panelLogin.Controls.Add(this.LoginButton);
             this.panelLogin.Location = new System.Drawing.Point(58, 67);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(433, 396);
+            this.panelLogin.Size = new System.Drawing.Size(371, 469);
             this.panelLogin.TabIndex = 2;
             // 
-            // LoginLabel
+            // siticonePictureBox1
             // 
-            this.LoginLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.LoginLabel.AutoSize = true;
-            this.LoginLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginLabel.ForeColor = System.Drawing.Color.Gray;
-            this.LoginLabel.Location = new System.Drawing.Point(183, 51);
-            this.LoginLabel.Name = "LoginLabel";
-            this.LoginLabel.Size = new System.Drawing.Size(71, 25);
-            this.LoginLabel.TabIndex = 0;
-            this.LoginLabel.Text = "Log in";
+            this.siticonePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("siticonePictureBox1.Image")));
+            this.siticonePictureBox1.Location = new System.Drawing.Point(107, 24);
+            this.siticonePictureBox1.Name = "siticonePictureBox1";
+            this.siticonePictureBox1.ShadowDecoration.Parent = this.siticonePictureBox1;
+            this.siticonePictureBox1.Size = new System.Drawing.Size(160, 144);
+            this.siticonePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.siticonePictureBox1.TabIndex = 5;
+            this.siticonePictureBox1.TabStop = false;
             // 
             // ShowPassword
             // 
@@ -91,7 +91,7 @@
             this.ShowPassword.CheckedState.BorderThickness = 0;
             this.ShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ShowPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShowPassword.Location = new System.Drawing.Point(132, 236);
+            this.ShowPassword.Location = new System.Drawing.Point(101, 314);
             this.ShowPassword.Name = "ShowPassword";
             this.ShowPassword.Size = new System.Drawing.Size(102, 17);
             this.ShowPassword.TabIndex = 4;
@@ -119,7 +119,7 @@
             this.PasswordTextBox.HoveredState.Parent = this.PasswordTextBox;
             this.PasswordTextBox.IconLeft = ((System.Drawing.Image)(resources.GetObject("PasswordTextBox.IconLeft")));
             this.PasswordTextBox.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.PasswordTextBox.Location = new System.Drawing.Point(110, 179);
+            this.PasswordTextBox.Location = new System.Drawing.Point(79, 257);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '\0';
             this.PasswordTextBox.PlaceholderText = "";
@@ -146,7 +146,7 @@
             this.UsernameTextBox.HoveredState.Parent = this.UsernameTextBox;
             this.UsernameTextBox.IconLeft = ((System.Drawing.Image)(resources.GetObject("UsernameTextBox.IconLeft")));
             this.UsernameTextBox.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.UsernameTextBox.Location = new System.Drawing.Point(110, 108);
+            this.UsernameTextBox.Location = new System.Drawing.Point(79, 186);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.PasswordChar = '\0';
             this.UsernameTextBox.PlaceholderText = "";
@@ -167,42 +167,38 @@
             this.LoginButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoginButton.ForeColor = System.Drawing.Color.White;
             this.LoginButton.HoveredState.Parent = this.LoginButton;
-            this.LoginButton.Location = new System.Drawing.Point(171, 266);
+            this.LoginButton.Location = new System.Drawing.Point(132, 349);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.ShadowDecoration.Parent = this.LoginButton;
-            this.LoginButton.Size = new System.Drawing.Size(94, 45);
+            this.LoginButton.Size = new System.Drawing.Size(111, 45);
             this.LoginButton.TabIndex = 1;
             this.LoginButton.Text = "Log in";
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // Panel
             // 
-            this.Panel.Controls.Add(this.ExitButton);
+            this.Panel.Controls.Add(this.siticoneControlBox1);
             this.Panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel.Location = new System.Drawing.Point(0, 0);
             this.Panel.Name = "Panel";
             this.Panel.ShadowDecoration.Parent = this.Panel;
-            this.Panel.Size = new System.Drawing.Size(548, 34);
+            this.Panel.Size = new System.Drawing.Size(486, 34);
             this.Panel.TabIndex = 3;
             this.Panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel_MouseDown);
             // 
-            // ExitButton
+            // siticoneControlBox1
             // 
-            this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExitButton.CheckedState.Parent = this.ExitButton;
-            this.ExitButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ExitButton.CustomImages.Parent = this.ExitButton;
-            this.ExitButton.FillColor = System.Drawing.Color.Transparent;
-            this.ExitButton.Font = new System.Drawing.Font("Segoe UI Emoji", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.ExitButton.HoveredState.Parent = this.ExitButton;
-            this.ExitButton.Location = new System.Drawing.Point(509, 0);
-            this.ExitButton.Name = "ExitButton";
-            this.ExitButton.ShadowDecoration.Parent = this.ExitButton;
-            this.ExitButton.Size = new System.Drawing.Size(39, 32);
-            this.ExitButton.TabIndex = 4;
-            this.ExitButton.Text = "×";
-            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            this.siticoneControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.siticoneControlBox1.FillColor = System.Drawing.Color.White;
+            this.siticoneControlBox1.HoveredState.FillColor = System.Drawing.Color.Crimson;
+            this.siticoneControlBox1.HoveredState.Parent = this.siticoneControlBox1;
+            this.siticoneControlBox1.IconColor = System.Drawing.Color.Black;
+            this.siticoneControlBox1.Location = new System.Drawing.Point(439, 1);
+            this.siticoneControlBox1.Name = "siticoneControlBox1";
+            this.siticoneControlBox1.PressedColor = System.Drawing.Color.Crimson;
+            this.siticoneControlBox1.ShadowDecoration.Parent = this.siticoneControlBox1;
+            this.siticoneControlBox1.Size = new System.Drawing.Size(47, 31);
+            this.siticoneControlBox1.TabIndex = 5;
             // 
             // SignUpLabel
             // 
@@ -210,7 +206,7 @@
             this.SignUpLabel.AutoSize = true;
             this.SignUpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SignUpLabel.ForeColor = System.Drawing.Color.Gray;
-            this.SignUpLabel.Location = new System.Drawing.Point(86, 27);
+            this.SignUpLabel.Location = new System.Drawing.Point(55, 63);
             this.SignUpLabel.Name = "SignUpLabel";
             this.SignUpLabel.Size = new System.Drawing.Size(176, 29);
             this.SignUpLabel.TabIndex = 0;
@@ -226,7 +222,7 @@
             this.SignUpButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SignUpButton.ForeColor = System.Drawing.Color.White;
             this.SignUpButton.HoveredState.Parent = this.SignUpButton;
-            this.SignUpButton.Location = new System.Drawing.Point(128, 298);
+            this.SignUpButton.Location = new System.Drawing.Point(97, 334);
             this.SignUpButton.Name = "SignUpButton";
             this.SignUpButton.ShadowDecoration.Parent = this.SignUpButton;
             this.SignUpButton.Size = new System.Drawing.Size(94, 45);
@@ -250,7 +246,7 @@
             this.NewEmailTextBox.HoveredState.Parent = this.NewEmailTextBox;
             this.NewEmailTextBox.IconLeft = ((System.Drawing.Image)(resources.GetObject("NewEmailTextBox.IconLeft")));
             this.NewEmailTextBox.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.NewEmailTextBox.Location = new System.Drawing.Point(85, 146);
+            this.NewEmailTextBox.Location = new System.Drawing.Point(54, 182);
             this.NewEmailTextBox.Name = "NewEmailTextBox";
             this.NewEmailTextBox.PasswordChar = '\0';
             this.NewEmailTextBox.PlaceholderText = "";
@@ -277,7 +273,7 @@
             this.NewPasswordTextBox.HoveredState.Parent = this.NewPasswordTextBox;
             this.NewPasswordTextBox.IconLeft = ((System.Drawing.Image)(resources.GetObject("NewPasswordTextBox.IconLeft")));
             this.NewPasswordTextBox.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.NewPasswordTextBox.Location = new System.Drawing.Point(85, 206);
+            this.NewPasswordTextBox.Location = new System.Drawing.Point(54, 242);
             this.NewPasswordTextBox.Name = "NewPasswordTextBox";
             this.NewPasswordTextBox.PasswordChar = '\0';
             this.NewPasswordTextBox.PlaceholderText = "";
@@ -297,7 +293,7 @@
             this.ShowPassword2.CheckedState.BorderThickness = 0;
             this.ShowPassword2.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ShowPassword2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShowPassword2.Location = new System.Drawing.Point(89, 258);
+            this.ShowPassword2.Location = new System.Drawing.Point(58, 294);
             this.ShowPassword2.Name = "ShowPassword2";
             this.ShowPassword2.Size = new System.Drawing.Size(102, 17);
             this.ShowPassword2.TabIndex = 4;
@@ -320,7 +316,6 @@
             this.linkLogin.TabIndex = 5;
             this.linkLogin.TabStop = true;
             this.linkLogin.Text = "Log in";
-
             // 
             // panelSignUp
             // 
@@ -338,7 +333,7 @@
             this.panelSignUp.Controls.Add(this.NewUsernameTextBox);
             this.panelSignUp.Location = new System.Drawing.Point(103, 67);
             this.panelSignUp.Name = "panelSignUp";
-            this.panelSignUp.Size = new System.Drawing.Size(347, 396);
+            this.panelSignUp.Size = new System.Drawing.Size(285, 469);
             this.panelSignUp.TabIndex = 6;
             // 
             // label2
@@ -346,7 +341,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Comfortaa", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 357);
+            this.label2.Location = new System.Drawing.Point(17, 430);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(149, 20);
             this.label2.TabIndex = 7;
@@ -368,7 +363,7 @@
             this.NewUsernameTextBox.HoveredState.Parent = this.NewUsernameTextBox;
             this.NewUsernameTextBox.IconLeft = ((System.Drawing.Image)(resources.GetObject("NewUsernameTextBox.IconLeft")));
             this.NewUsernameTextBox.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.NewUsernameTextBox.Location = new System.Drawing.Point(85, 84);
+            this.NewUsernameTextBox.Location = new System.Drawing.Point(54, 120);
             this.NewUsernameTextBox.Name = "NewUsernameTextBox";
             this.NewUsernameTextBox.PasswordChar = '\0';
             this.NewUsernameTextBox.PlaceholderText = "";
@@ -395,7 +390,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(548, 525);
+            this.ClientSize = new System.Drawing.Size(486, 598);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.Panel);
             this.Controls.Add(this.panelSignUp);
@@ -409,6 +404,7 @@
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.LoginAndSignup_DragEnter);
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.siticonePictureBox1)).EndInit();
             this.Panel.ResumeLayout(false);
             this.panelSignUp.ResumeLayout(false);
             this.panelSignUp.PerformLayout();
@@ -418,13 +414,11 @@
 
         #endregion
         private System.Windows.Forms.Panel panelLogin;
-        private System.Windows.Forms.Label LoginLabel;
         private Siticone.UI.WinForms.SiticoneRoundedButton LoginButton;
         private Siticone.UI.WinForms.SiticoneCheckBox ShowPassword;
         private Siticone.UI.WinForms.SiticoneRoundedTextBox PasswordTextBox;
         private Siticone.UI.WinForms.SiticoneRoundedTextBox UsernameTextBox;
         private Siticone.UI.WinForms.SiticonePanel Panel;
-        private Siticone.UI.WinForms.SiticoneButton ExitButton;
         private System.Windows.Forms.Label SignUpLabel;
         private Siticone.UI.WinForms.SiticoneRoundedButton SignUpButton;
         private Siticone.UI.WinForms.SiticoneRoundedTextBox NewEmailTextBox;
@@ -436,6 +430,8 @@
         private Siticone.UI.WinForms.SiticoneLabel label2;
         private Siticone.UI.WinForms.SiticoneRoundedTextBox NewUsernameTextBox;
         private System.Windows.Forms.Timer timer1;
+        private Siticone.UI.WinForms.SiticoneControlBox siticoneControlBox1;
+        private Siticone.UI.WinForms.SiticonePictureBox siticonePictureBox1;
     }
 }
 

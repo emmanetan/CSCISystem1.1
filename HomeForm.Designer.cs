@@ -36,13 +36,16 @@
             this.siticoneLabel2 = new Siticone.UI.WinForms.SiticoneLabel();
             this.siticoneLabel1 = new Siticone.UI.WinForms.SiticoneLabel();
             this.panel1 = new AntdUI.Panel();
+            this.siticoneRoundedButton1 = new Siticone.UI.WinForms.SiticoneRoundedButton();
             this.labelTotalProducts = new Siticone.UI.WinForms.SiticoneLabel();
             this.labelTotalInventoryValue = new Siticone.UI.WinForms.SiticoneLabel();
             this.panel3 = new AntdUI.Panel();
+            this.siticoneRoundedButton2 = new Siticone.UI.WinForms.SiticoneRoundedButton();
             this.labelQuantityOfItems = new Siticone.UI.WinForms.SiticoneLabel();
             this.labelTotalItems = new Siticone.UI.WinForms.SiticoneLabel();
             this.siticoneLabel7 = new Siticone.UI.WinForms.SiticoneLabel();
             this.panel5 = new AntdUI.Panel();
+            this.siticoneRoundedButton3 = new Siticone.UI.WinForms.SiticoneRoundedButton();
             this.siticoneLabel8 = new Siticone.UI.WinForms.SiticoneLabel();
             this.LabelOutOfStock = new Siticone.UI.WinForms.SiticoneLabel();
             this.siticoneLabel10 = new Siticone.UI.WinForms.SiticoneLabel();
@@ -58,7 +61,7 @@
             this.labelTime1.BackColor = System.Drawing.Color.Transparent;
             this.labelTime1.Font = new System.Drawing.Font("Satoshi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTime1.ForeColor = System.Drawing.Color.Gray;
-            this.labelTime1.Location = new System.Drawing.Point(1345, 20);
+            this.labelTime1.Location = new System.Drawing.Point(1345, 84);
             this.labelTime1.Name = "labelTime1";
             this.labelTime1.Size = new System.Drawing.Size(193, 46);
             this.labelTime1.TabIndex = 3;
@@ -115,10 +118,11 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.Controls.Add(this.siticoneRoundedButton1);
             this.panel1.Controls.Add(this.labelTotalProducts);
             this.panel1.Controls.Add(this.labelTotalInventoryValue);
             this.panel1.Controls.Add(this.siticoneLabel1);
-            this.panel1.Location = new System.Drawing.Point(12, 180);
+            this.panel1.Location = new System.Drawing.Point(61, 333);
             this.panel1.Name = "panel1";
             this.panel1.Radius = 10;
             this.panel1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(76)))), ((int)(((byte)(222)))));
@@ -127,9 +131,27 @@
             this.panel1.ShadowOpacity = 1F;
             this.panel1.ShadowOpacityAnimation = true;
             this.panel1.ShadowOpacityHover = 1F;
-            this.panel1.Size = new System.Drawing.Size(508, 219);
+            this.panel1.Size = new System.Drawing.Size(460, 219);
             this.panel1.TabIndex = 12;
             this.panel1.Text = "panel1";
+            // 
+            // siticoneRoundedButton1
+            // 
+            this.siticoneRoundedButton1.Animated = false;
+            this.siticoneRoundedButton1.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneRoundedButton1.CheckedState.Parent = this.siticoneRoundedButton1;
+            this.siticoneRoundedButton1.CustomImages.Parent = this.siticoneRoundedButton1;
+            this.siticoneRoundedButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.siticoneRoundedButton1.ForeColor = System.Drawing.Color.White;
+            this.siticoneRoundedButton1.HoveredState.Parent = this.siticoneRoundedButton1;
+            this.siticoneRoundedButton1.Image = ((System.Drawing.Image)(resources.GetObject("siticoneRoundedButton1.Image")));
+            this.siticoneRoundedButton1.Location = new System.Drawing.Point(362, 28);
+            this.siticoneRoundedButton1.Name = "siticoneRoundedButton1";
+            this.siticoneRoundedButton1.PressedColor = System.Drawing.Color.Transparent;
+            this.siticoneRoundedButton1.PressedDepth = 0;
+            this.siticoneRoundedButton1.ShadowDecoration.Parent = this.siticoneRoundedButton1;
+            this.siticoneRoundedButton1.Size = new System.Drawing.Size(50, 50);
+            this.siticoneRoundedButton1.TabIndex = 14;
             // 
             // labelTotalProducts
             // 
@@ -154,10 +176,11 @@
             // panel3
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel3.Controls.Add(this.siticoneRoundedButton2);
             this.panel3.Controls.Add(this.labelQuantityOfItems);
             this.panel3.Controls.Add(this.labelTotalItems);
             this.panel3.Controls.Add(this.siticoneLabel7);
-            this.panel3.Location = new System.Drawing.Point(536, 180);
+            this.panel3.Location = new System.Drawing.Point(547, 333);
             this.panel3.Name = "panel3";
             this.panel3.Radius = 10;
             this.panel3.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(76)))), ((int)(((byte)(222)))));
@@ -166,9 +189,28 @@
             this.panel3.ShadowOpacity = 1F;
             this.panel3.ShadowOpacityAnimation = true;
             this.panel3.ShadowOpacityHover = 1F;
-            this.panel3.Size = new System.Drawing.Size(518, 219);
+            this.panel3.Size = new System.Drawing.Size(470, 219);
             this.panel3.TabIndex = 14;
             this.panel3.Text = "panel3";
+            // 
+            // siticoneRoundedButton2
+            // 
+            this.siticoneRoundedButton2.Animated = false;
+            this.siticoneRoundedButton2.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneRoundedButton2.CheckedState.Parent = this.siticoneRoundedButton2;
+            this.siticoneRoundedButton2.CustomImages.Parent = this.siticoneRoundedButton2;
+            this.siticoneRoundedButton2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.siticoneRoundedButton2.ForeColor = System.Drawing.Color.White;
+            this.siticoneRoundedButton2.HoveredState.Parent = this.siticoneRoundedButton2;
+            this.siticoneRoundedButton2.Image = ((System.Drawing.Image)(resources.GetObject("siticoneRoundedButton2.Image")));
+            this.siticoneRoundedButton2.ImageSize = new System.Drawing.Size(25, 25);
+            this.siticoneRoundedButton2.Location = new System.Drawing.Point(365, 28);
+            this.siticoneRoundedButton2.Name = "siticoneRoundedButton2";
+            this.siticoneRoundedButton2.PressedColor = System.Drawing.Color.Transparent;
+            this.siticoneRoundedButton2.PressedDepth = 0;
+            this.siticoneRoundedButton2.ShadowDecoration.Parent = this.siticoneRoundedButton2;
+            this.siticoneRoundedButton2.Size = new System.Drawing.Size(50, 50);
+            this.siticoneRoundedButton2.TabIndex = 15;
             // 
             // labelQuantityOfItems
             // 
@@ -193,20 +235,21 @@
             // siticoneLabel7
             // 
             this.siticoneLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.siticoneLabel7.Font = new System.Drawing.Font("Satoshi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siticoneLabel7.Location = new System.Drawing.Point(50, 30);
+            this.siticoneLabel7.Font = new System.Drawing.Font("Satoshi", 14.25F, System.Drawing.FontStyle.Bold);
+            this.siticoneLabel7.Location = new System.Drawing.Point(50, 28);
             this.siticoneLabel7.Name = "siticoneLabel7";
-            this.siticoneLabel7.Size = new System.Drawing.Size(84, 22);
+            this.siticoneLabel7.Size = new System.Drawing.Size(144, 26);
             this.siticoneLabel7.TabIndex = 11;
-            this.siticoneLabel7.Text = "Total Items";
+            this.siticoneLabel7.Text = "Total Sold Items";
             // 
             // panel5
             // 
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel5.Controls.Add(this.siticoneRoundedButton3);
             this.panel5.Controls.Add(this.siticoneLabel8);
             this.panel5.Controls.Add(this.LabelOutOfStock);
             this.panel5.Controls.Add(this.siticoneLabel10);
-            this.panel5.Location = new System.Drawing.Point(1070, 180);
+            this.panel5.Location = new System.Drawing.Point(1041, 333);
             this.panel5.Name = "panel5";
             this.panel5.Radius = 10;
             this.panel5.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(76)))), ((int)(((byte)(222)))));
@@ -215,9 +258,29 @@
             this.panel5.ShadowOpacity = 1F;
             this.panel5.ShadowOpacityAnimation = true;
             this.panel5.ShadowOpacityHover = 1F;
-            this.panel5.Size = new System.Drawing.Size(508, 219);
+            this.panel5.Size = new System.Drawing.Size(460, 219);
             this.panel5.TabIndex = 15;
             this.panel5.Text = "panel5";
+            // 
+            // siticoneRoundedButton3
+            // 
+            this.siticoneRoundedButton3.Animated = false;
+            this.siticoneRoundedButton3.BackColor = System.Drawing.Color.Transparent;
+            this.siticoneRoundedButton3.CheckedState.Parent = this.siticoneRoundedButton3;
+            this.siticoneRoundedButton3.CustomImages.Parent = this.siticoneRoundedButton3;
+            this.siticoneRoundedButton3.FillColor = System.Drawing.Color.Transparent;
+            this.siticoneRoundedButton3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.siticoneRoundedButton3.ForeColor = System.Drawing.Color.White;
+            this.siticoneRoundedButton3.HoveredState.Parent = this.siticoneRoundedButton3;
+            this.siticoneRoundedButton3.Image = ((System.Drawing.Image)(resources.GetObject("siticoneRoundedButton3.Image")));
+            this.siticoneRoundedButton3.ImageSize = new System.Drawing.Size(50, 50);
+            this.siticoneRoundedButton3.Location = new System.Drawing.Point(360, 28);
+            this.siticoneRoundedButton3.Name = "siticoneRoundedButton3";
+            this.siticoneRoundedButton3.PressedColor = System.Drawing.Color.Transparent;
+            this.siticoneRoundedButton3.PressedDepth = 0;
+            this.siticoneRoundedButton3.ShadowDecoration.Parent = this.siticoneRoundedButton3;
+            this.siticoneRoundedButton3.Size = new System.Drawing.Size(50, 50);
+            this.siticoneRoundedButton3.TabIndex = 16;
             // 
             // siticoneLabel8
             // 
@@ -242,10 +305,10 @@
             // siticoneLabel10
             // 
             this.siticoneLabel10.BackColor = System.Drawing.Color.Transparent;
-            this.siticoneLabel10.Font = new System.Drawing.Font("Satoshi", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siticoneLabel10.Location = new System.Drawing.Point(50, 30);
+            this.siticoneLabel10.Font = new System.Drawing.Font("Satoshi", 14.25F, System.Drawing.FontStyle.Bold);
+            this.siticoneLabel10.Location = new System.Drawing.Point(50, 28);
             this.siticoneLabel10.Name = "siticoneLabel10";
-            this.siticoneLabel10.Size = new System.Drawing.Size(95, 22);
+            this.siticoneLabel10.Size = new System.Drawing.Size(110, 26);
             this.siticoneLabel10.TabIndex = 11;
             this.siticoneLabel10.Text = "Out of Stock";
             // 
@@ -294,5 +357,8 @@
         private Siticone.UI.WinForms.SiticoneLabel siticoneLabel8;
         private Siticone.UI.WinForms.SiticoneLabel LabelOutOfStock;
         private Siticone.UI.WinForms.SiticoneLabel siticoneLabel10;
+        private Siticone.UI.WinForms.SiticoneRoundedButton siticoneRoundedButton1;
+        private Siticone.UI.WinForms.SiticoneRoundedButton siticoneRoundedButton2;
+        private Siticone.UI.WinForms.SiticoneRoundedButton siticoneRoundedButton3;
     }
 }

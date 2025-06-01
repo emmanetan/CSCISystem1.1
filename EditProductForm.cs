@@ -208,6 +208,7 @@ namespace CSCISystem1._1
         private void updateBtn_Click(object sender, EventArgs e)
         {
             EditProductDatabase();
+            this.Close();
         }
 
         private void resetBtn_Click(object sender, EventArgs e)

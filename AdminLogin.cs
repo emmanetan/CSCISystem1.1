@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -41,6 +42,7 @@ namespace CSCISystem1._1
             RadiusForm();
         }
 
+
         private void RadiusForm()
         {
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
@@ -56,16 +58,28 @@ namespace CSCISystem1._1
             Region = new Region(path);
         }
 
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(password);
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+                return Convert.ToBase64String(hashBytes);
+            }
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            
             string username = txtUserName.Text.Trim();
-            string password = txtPassword.Text.Trim();
-
-            if (username == "" || password == "")
+            string hashedPassword = HashPassword(txtPassword.Text);
+            if (username == "" || hashedPassword == "")
             {
                 MessageBox.Show("Please enter username and password.");
                 return;
             }
+
+
 
             try
             {
@@ -73,7 +87,7 @@ namespace CSCISystem1._1
                 string query = "SELECT COUNT(*) FROM tb_user WHERE Username=@username AND Password=@password AND UserType='Admin'";
                 cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@password", hashedPassword);
 
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
 

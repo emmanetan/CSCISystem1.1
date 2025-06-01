@@ -166,13 +166,9 @@ namespace CSCISystem1._1
             }
         }
 
-        private void txtProductCode_TextChanged(object sender, EventArgs e)
+        private void txtPrice_TextChanged(object sender, EventArgs e)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txtProductCode.Text, @"^[0-9\-]*$"))
-            {
-                MessageBox.Show("Only numbers and dashes are allowed.");
-                txtProductCode.Text = "";
-            }
+            CalculateTotalPrice();
         }
     }
 }

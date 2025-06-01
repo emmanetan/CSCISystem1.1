@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using AntdUIDemo;
+using LoginSignup;
 
 namespace CSCISystem1._1
 {
@@ -109,10 +110,16 @@ namespace CSCISystem1._1
             LoadForm(new Sales());
         }
 
-        private void TempPOSBTN_Click(object sender, EventArgs e)
+        private void LogoutBtn_Click(object sender, EventArgs e)
         {
-            POS pos = new POS();
-            pos.Show();
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+            }
+
         }
     }
 }

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            AntdUI.BreadcrumbItem breadcrumbItem3 = new AntdUI.BreadcrumbItem();
+            AntdUI.BreadcrumbItem breadcrumbItem1 = new AntdUI.BreadcrumbItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product));
-            AntdUI.BreadcrumbItem breadcrumbItem4 = new AntdUI.BreadcrumbItem();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            AntdUI.BreadcrumbItem breadcrumbItem2 = new AntdUI.BreadcrumbItem();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainpanelProduct = new AntdUI.Panel();
             this.panel3 = new AntdUI.Panel();
             this.filter = new AntdUI.Dropdown();
@@ -124,19 +124,19 @@
             // 
             this.breadcrumb1.BackColor = System.Drawing.Color.Transparent;
             this.breadcrumb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            breadcrumbItem3.Icon = ((System.Drawing.Image)(resources.GetObject("breadcrumbItem3.Icon")));
-            breadcrumbItem3.LocalizationText = "homebread";
-            breadcrumbItem3.Text = "Home";
-            breadcrumbItem4.LocalizationText = "productbread";
-            breadcrumbItem4.Text = "Product";
-            this.breadcrumb1.Items.Add(breadcrumbItem3);
-            this.breadcrumb1.Items.Add(breadcrumbItem4);
+            breadcrumbItem1.Icon = ((System.Drawing.Image)(resources.GetObject("breadcrumbItem1.Icon")));
+            breadcrumbItem1.LocalizationText = "homebread";
+            breadcrumbItem1.Text = "Home";
+            breadcrumbItem2.LocalizationText = "productbread";
+            breadcrumbItem2.Text = "Product";
+            this.breadcrumb1.Items.Add(breadcrumbItem1);
+            this.breadcrumb1.Items.Add(breadcrumbItem2);
             this.breadcrumb1.Location = new System.Drawing.Point(38, 20);
             this.breadcrumb1.Name = "breadcrumb1";
             this.breadcrumb1.Size = new System.Drawing.Size(873, 40);
             this.breadcrumb1.TabIndex = 10;
             this.breadcrumb1.Text = "breadcrumb1";
-            this.breadcrumb1.ItemClick += new AntdUI.BreadcrumbItemEventHandler(this.breadcrumb1_ItemClick);
+
             // 
             // siticoneLabel1
             // 
@@ -157,7 +157,7 @@
             this.AddProductBtn.Icon = ((System.Drawing.Image)(resources.GetObject("AddProductBtn.Icon")));
             this.AddProductBtn.IconRatio = 1F;
             this.AddProductBtn.IconSize = new System.Drawing.Size(25, 25);
-            this.AddProductBtn.Location = new System.Drawing.Point(740, 92);
+            this.AddProductBtn.Location = new System.Drawing.Point(732, 87);
             this.AddProductBtn.Name = "AddProductBtn";
             this.AddProductBtn.Radius = 9;
             this.AddProductBtn.Size = new System.Drawing.Size(179, 39);
@@ -199,8 +199,8 @@
             // 
             this.gridViewProductList.AllowUserToAddRows = false;
             this.gridViewProductList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.gridViewProductList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.gridViewProductList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridViewProductList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -209,24 +209,24 @@
             this.gridViewProductList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridViewProductList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.gridViewProductList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Satoshi", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridViewProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Satoshi", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridViewProductList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridViewProductList.ColumnHeadersHeight = 40;
             this.gridViewProductList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Satoshi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridViewProductList.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Satoshi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridViewProductList.DefaultCellStyle = dataGridViewCellStyle3;
             this.gridViewProductList.EnableHeadersVisualStyles = false;
             this.gridViewProductList.GridColor = System.Drawing.Color.White;
             this.gridViewProductList.Location = new System.Drawing.Point(20, 0);
@@ -297,7 +297,7 @@
         private AntdUI.Panel panel2;
         private AntdUI.Panel panel3;
         private AntdUI.Dropdown filter;
-        private AntdUI.Breadcrumb breadcrumb1;
         private AntdUI.Label labelAction;
+        private AntdUI.Breadcrumb breadcrumb1;
     }
 }
