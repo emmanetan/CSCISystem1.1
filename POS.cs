@@ -14,12 +14,7 @@ namespace AntdUIDemo
         private string _cashierName;
         private Image _profileImage;
         public bool IsAuthenticated { get; private set; }
-
-        // This is your global connection string
-
-        SqlConnection con =
-            new SqlConnection(
-                @"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
+        SqlConnection con = new SqlConnection(@"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
         public POS()
         {

@@ -10,7 +10,6 @@ using Microsoft.Data.SqlClient;
 
 namespace CSCISystem1._1
 {
-
     public partial class Product : Form
     {
         string firstname;
@@ -19,7 +18,6 @@ namespace CSCISystem1._1
         SqlConnection con = new SqlConnection(@"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
         SqlCommand cmd;
-
         public Product()
         {
             InitializeComponent();
@@ -133,7 +131,6 @@ namespace CSCISystem1._1
                 con.Close();
             }
         }
-
         private void LoadFilter()
         {
             filter.Items.Add("All");
@@ -159,7 +156,6 @@ namespace CSCISystem1._1
                 // Get the clicked row
                 var row = gridViewProductList.Rows[e.RowIndex];
 
-                
                 // THESE NAMES MUST MATCH THE FIRST STRING (NAME) OF THE COLUMNS ADDED IN InitializeDataGridView().
                 // Also, ensure they match the InventoryReport.AddRemovedItem parameter order.
                 string itemCode = row.Cells["ProductCode"].Value.ToString(); // Changed: "ItemCode" to "ProductCode"
@@ -190,7 +186,6 @@ namespace CSCISystem1._1
                 InitializeDataGridView();
             }
         }
-
         private void txtSearchItem_TextChanged(object sender, EventArgs e)
         {
             SearchProducts(txtSearchItem.Text.Trim());
