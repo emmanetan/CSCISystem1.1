@@ -41,32 +41,6 @@ namespace CSCISystem1._1
             gridViewUserList.Columns.Add(imgCol); // Fixed syntax issues and corrected the column definition
             labelAction.Text = "Action";
 
-            //edit button
-            //var editButton = new DataGridViewButtonColumn
-            //{
-            //    Name = "EditAction",
-            //    Text = "Edit",
-            //    UseColumnTextForButtonValue = true,
-            //    HeaderText = "                                 Action",
-            //    AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-
-            //};
-            //gridViewUserList.Columns.Add(editButton);
-
-            ////delete button
-            //var deleteButton = new DataGridViewButtonColumn
-            //{
-            //    Name = "DeleteAction",
-            //    Text = "Delete",
-            //    UseColumnTextForButtonValue = true,
-            //    HeaderText = "",
-            //    AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-
-            //};
-            //gridViewUserList.Columns.Add(deleteButton);
-            //LoadUserData();
-
-            // cursor change on hover
             gridViewUserList.CellMouseEnter += (s, e) =>
             {
                 if (e.RowIndex >= 0 && (e.ColumnIndex == gridViewUserList.Columns["EditAction"].Index ||
