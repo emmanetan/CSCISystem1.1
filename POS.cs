@@ -41,7 +41,6 @@ namespace AntdUIDemo
             mopDropdown.SelectedIndex = 0;
             txtBarcode.Focus();
         }
-
         private void LoadCartHeader()
         {
             siticoneDataGridView2.Columns.Clear();
@@ -69,7 +68,6 @@ namespace AntdUIDemo
 
             txtBarcode.KeyDown += txtBarcode_KeyDown;
         }
-
         private void SearchProducts(string searchText)
         {
             try
@@ -117,8 +115,6 @@ namespace AntdUIDemo
                 con.Close();
             }
         }
-
-
         private void LoadReceipt()
         {
             receiptTextBox.Clear();
