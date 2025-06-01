@@ -71,7 +71,6 @@ namespace CSCISystem1._1
             return soldItemsTable;
         }
 
-        // NEW: Public static method to allow other classes to access removedItemsTable (for consistency).
         public static DataTable GetRemovedItemsTable()
         {
             return removedItemsTable;

@@ -222,7 +222,7 @@ namespace CSCISystem1._1
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Load the selected image into the PictureBox
+                
                 pictureBoxAddProduct.Image = Image.FromFile(openFileDialog.FileName);
                 pictureBoxAddProduct.ImageFit = TFit.Cover;
             }
