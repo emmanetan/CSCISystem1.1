@@ -275,8 +275,6 @@ namespace AntdUIDemo
 
         private void LoadProductDatabase()
         {
-            // --- CHANGE THIS LINE ---
-            // Use your local computer name: LAPTOP-JCLJ6T4H
             using (SqlConnection localCon =
                    new SqlConnection(
                        @"Data Source=EMMAN\SQLEXPRESS;Initial Catalog=DB_System;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"))
@@ -438,7 +436,6 @@ namespace AntdUIDemo
                 return;
             }
 
-            // Step 2: Check cash input
             if (!decimal.TryParse(txtCash.Text, out decimal cash))
             {
                 MessageBox.Show("Invalid cash amount.");
@@ -475,7 +472,6 @@ namespace AntdUIDemo
             }
 
 
-            // Step 3: Update database
             try
             {
                 con.Open(); // This uses the global 'con' connection
