@@ -79,8 +79,6 @@ namespace CSCISystem1._1
                 return;
             }
 
-
-
             try
             {
                 con.Open();
