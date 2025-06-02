@@ -45,8 +45,6 @@ namespace CSCISystem1._1
             });
         }
 
-
-
         private void LoadSalesData()
         {
             if (salesDataGridView != null)
@@ -113,7 +111,6 @@ namespace CSCISystem1._1
                     cartesianChart1.AxisY[0].MaxValue = 1;
                 }
 
-
                 cartesianChart1.AxisY[0].Separator = new Separator { Step = 1 };
 
                 cartesianChart1.Series.Add(new LineSeries
@@ -141,7 +138,6 @@ namespace CSCISystem1._1
                 cartesianChart1.AxisY[0].Separator = new Separator { Step = 1 };
             }
         }
-
         private void ExportToCSV(DataGridView dgv, string fileName)
         {
             using (SaveFileDialog sfd = new SaveFileDialog()
@@ -172,12 +168,10 @@ namespace CSCISystem1._1
                 }
             }
         }
-
         private void DownloadBtn_Click(object sender, EventArgs e)
         {
             ExportToCSV(salesDataGridView, "Sales.csv");
         }
-
         private void Sales_Load(object sender, EventArgs e)
         {
             LoadSalesData();
